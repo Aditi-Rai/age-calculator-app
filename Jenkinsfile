@@ -7,7 +7,6 @@ pipeline {
     PORT = "3000"
     DOCKER_TLS_VERIFY = ""
 }
-
     stages {
         stage('Checkout Code') {
             steps {
@@ -17,17 +16,18 @@ pipeline {
         }
         
         stage('Docker Login') {
-            steps {
-                script {
-                    // Use credentials to log in to Docker Hub (or another registry)
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', 
-                                                      usernameVariable: 'DOCKER_USER', 
-                                                      passwordVariable: 'DOCKER_PASS')]) {
-                        sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
-                    }
-                }
+    steps {
+        script {
+            withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', 
+                                                usernameVariable: 'DOCKER_USER', 
+                                                passwordVariable: 'DOCKER_PASS')]) {
+                // Using single quotes and shell variable expansion prevents Groovy interpolation issues
+                sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
             }
         }
+    }
+}
+
         
         stage('Build Docker Image') {
             steps {
