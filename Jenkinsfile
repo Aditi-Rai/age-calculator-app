@@ -5,8 +5,12 @@ pipeline {
     IMAGE_NAME = "my-node-app"
     CONTAINER_NAME = "node-app-container"
     PORT = "3000"
-    DOCKER_TLS_VERIFY = ""
+    DOCKER_HOST = "unix:///var/run/docker.sock"
+    // Remove DOCKER_CERT_PATH and DOCKER_TLS_VERIFY
+    DOCKER_TLS_VERIFY=""
+    DOCKER_CERT_PATH=""
 }
+
     stages {
         stage('Checkout Code') {
             steps {
