@@ -1,11 +1,12 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = "my-node-app"
-        CONTAINER_NAME = "node-app-container"
-        PORT = "3000"
-    }
+   environment {
+    IMAGE_NAME = "my-node-app"
+    CONTAINER_NAME = "node-app-container"
+    PORT = "3000"
+    DOCKER_TLS_VERIFY = ""
+}
 
     stages {
         stage('Checkout Code') {
