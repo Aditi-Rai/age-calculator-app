@@ -1,8 +1,6 @@
 # Age Calculator App
 
-This is a simple Age Calculator application built with Node.js and Express. It provides an API endpoint to calculate the age (years, months, and days) based on the provided date of birth.
-
-This is test for Jira integration 
+This is a simple Age Calculator application built with Node.js and Express. It provides an API endpoint to calculate the age (years, months, and days) based on the provided date of birth. 
 
 ## Features
 
